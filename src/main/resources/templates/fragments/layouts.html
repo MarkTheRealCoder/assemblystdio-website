@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head(title, additionalCss)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Title</title>
+
+    <!-- CSS di base sempre inclusi -->
+    <link th:href="@{/style.css}" rel="stylesheet">
+
+    <!-- CSS aggiuntivi dinamici - gestisce sia stringhe che liste -->
+    <th:block th:if="${additionalCss != null}">
+        <!-- Se è una stringa, la splitta -->
+        <th:block th:if="${#strings.contains(additionalCss.toString(), ',')}">
+            <link th:each="css : ${#strings.listSplit(additionalCss, ',')}"
+                  th:href="@{'/css/' + ${#strings.trim(css)} + '.css'}" rel="stylesheet">
+        </th:block>
+        <!-- Se è una singola stringa senza virgole -->
+        <th:block th:unless="${#strings.contains(additionalCss.toString(), ',')}">
+            <link th:href="@{'/css/' + ${additionalCss} + '.css'}" rel="stylesheet">
+        </th:block>
+    </th:block>
+</head>
+
+<nav th:fragment="navbar(target)">
+    <img src="/imgs/logo.png" alt="Logo" class="logo">
+    <h1>Assembly Stdio Documentation</h1>
+    <ul>
+        <li><a th:href="@{/}" th:classappend="${target == 'Home'} ? 'active' : ''">Home</a></li>
+        <li><a th:href="@{/download}" th:classappend="${target == 'Download'} ? 'active' : ''">Download</a></li>
+        <li><a th:href="@{/examples}" th:classappend="${target == 'Examples'} ? 'active' : ''">Examples</a></li>
+    </ul>
+</nav>
+
+<div th:fragment="background" class="magic-container">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+    <div class="circle circle-4"></div>
+    <div class="circle circle-5"></div>
+    <div class="circle circle-6"></div>
+    <div class="circle circle-7"></div>
+    <div class="circle circle-8"></div>
+    <div class="circle circle-9"></div>
+    <div class="circle circle-10"></div>
+</div>
+
+<footer th:fragment="footer">
+    <section>
+        <p>&copy; 2024 Assembly Stdio. All rights reserved.</p>
+        <p>Created by <a href="https://atom7.xyz/" target="_blank" rel="noopener noreferrer">Antonio Masala</a> & <a href="" target="_blank" rel="noopener noreferrer">Marco La Civita</a></p>
+    </section>
+    <section>
+        <strong>Repositories</strong>
+        <p><a href="https://github.com/MarkTheRealCoder/Assembly-UI" target="_blank" rel="noopener noreferrer">User Interface</a></p>
+        <p><a href="https://github.com/atom7xyz/antlr-impl" target="_blank" rel="noopener noreferrer">Interpreters</a></p>
+    </section>
+</footer>
+
+</html>

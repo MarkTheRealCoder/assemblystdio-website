@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="title='Examples'">
+
+<head th:replace="fragments/layouts :: head(title=${title}, additionalCss='examples')"/>
+<body>
+    <div th:replace="fragments/layouts :: background"/>
+
+    <nav th:replace="fragments/layouts :: navbar(target=${title})"/>
+
+    <main>
+        <section>
+
+        </section>
+    </main>
+
+    <footer th:replace="fragments/layouts :: footer"/>
+</body>
+</html>
