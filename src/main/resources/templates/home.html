@@ -8,8 +8,46 @@
     <nav th:replace="fragments/layouts :: navbar(target=${title})"/>
 
     <main>
-        <section>
-
+        <section class="full">
+            <h2>What's Assembly Stdio?</h2>
+            <p>
+                Assembly Stdio is a <i>University Project</i> made for the Computer Architecture Course at <a href="https://www.unica.it/it">Università di Cagliari</a>.<br>
+                It's an IDE designed for two assembly languages: <strong>Assembly 8088</strong> and <strong>IJVM</strong>.<br>
+                This tool offers a simple and intuitive interface to write, compile, and execute assembly code.<br>
+                This application is made for students and enthusiasts that are willing to learn how assembly languages work.
+            </p>
+            <div class="flex-row button-link-container">
+                <a class="button-link" href="download"><img src="/imgs/download.svg">Download Now</a>
+                <a class="button-link button-secondary" onclick="scrollDown('summary')"><img src="/imgs/scroll-down.svg">Overview</a>
+            </div>
+        </section>
+        <div class="flex-row">
+            <section>
+                <h2>Assembly 8088 Language</h2>
+                <p>
+                    The Intel 8088 is a historic 16-bit microprocessor that powered the original IBM PC in 1981. This assembly language provides direct access to the processor's hardware capabilities, featuring a rich instruction set with 81 different instructions for data manipulation, arithmetic operations, and system control.<br><br>
+                    Programming in 8088 assembly involves working with general-purpose registers (AX, BX, CX, DX), managing segmented memory through CS, DS, ES, and SS registers, and utilizing multiple addressing modes for flexible data access. The language supports complex operations including string processing, interrupt handling, and direct hardware control, making it ideal for understanding low-level computer architecture and system programming fundamentals.<br><br>
+                    Key Features: Hardware registers, segmented memory model, variable-length instructions, interrupt support, string operations, and complete control over system resources.
+                </p>
+                <div class="flex-row button-link-container">
+                    <a class="button-link" href="examples"><img src="/imgs/code.svg">Examples</a>
+                </div>
+            </section>
+            <section>
+                <h2>IJVM Language</h2>
+                <p>
+                    IJVM (Integer Java Virtual Machine) is an educational assembly language created by Andrew Tanenbaum specifically for teaching computer architecture concepts. Built on a stack-based architecture, IJVM simplifies the complexity of real processors while maintaining the essential principles of how computers execute programs.<br><br>
+                    This language operates entirely with integer values and uses a stack for most operations, eliminating the complexity of multiple data types and register management. Programs are structured around methods with local variables and a constant pool, similar to the Java Virtual Machine but focused purely on fundamental operations like arithmetic, stack manipulation, and basic control flow.<br><br>
+                    Key Features: Stack-based operations, method-oriented structure, integer-only arithmetic, simplified instruction set, constant pool management, and educational focus on core architecture principles.
+                </p>
+                <div class="flex-row button-link-container">
+                    <a class="button-link" href="examples"><img src="/imgs/code.svg">Examples</a>
+                </div>
+            </section>
+        </div>
+        <section class="full" id="summary">
+            <h2>Application Summary</h2>
+            <p></p>
         </section>
     </main>
 

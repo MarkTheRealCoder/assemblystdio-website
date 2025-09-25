@@ -3,6 +3,7 @@
     --primary-color: #1a1d21;
     --secondary-color: #0356b6;
     --tertiary-color: #0e0c0c;
+    --quaternary-color: #cbab05;
     --font-family: 'Arial, sans-serif';
 }
 
@@ -33,92 +34,6 @@ body {
     filter: blur(10px);
 }
 
-.circle {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(circle, #0356b6 0%, rgba(3, 86, 182, 0.3) 50%, transparent 100%);
-}
-
-.circle-1 {
-    width: 200px;
-    height: 200px;
-    top: 10%;
-    left: 15%;
-    opacity: 0.6;
-}
-
-.circle-2 {
-    width: 150px;
-    height: 150px;
-    top: 60%;
-    right: 20%;
-    opacity: 0.6;
-}
-
-.circle-3 {
-    width: 300px;
-    height: 300px;
-    bottom: 15%;
-    left: 10%;
-    opacity: 0.6;
-}
-
-.circle-4 {
-    width: 120px;
-    height: 120px;
-    top: 30%;
-    right: 10%;
-    opacity: 0.6;
-}
-
-.circle-5 {
-    width: 250px;
-    height: 250px;
-    top: 70%;
-    left: 45%;
-    opacity: 0.6;
-}
-
-.circle-6 {
-    width: 180px;
-    height: 180px;
-    bottom: 40%;
-    right: 35%;
-    opacity: 0.6;
-}
-
-.circle-7 {
-    width: 100px;
-    height: 100px;
-    top: 20%;
-    left: 50%;
-    opacity: 0.8;
-}
-
-.circle-8 {
-    width: 220px;
-    height: 220px;
-    bottom: 25%;
-    right: 15%;
-    opacity: 0.6;
-}
-
-.circle-9 {
-    width: 160px;
-    height: 160px;
-    top: 50%;
-    left: 25%;
-    opacity: 0.7;
-}
-
-.circle-10 {
-    width: 280px;
-    height: 280px;
-    top: 5%;
-    right: 40%;
-    opacity: 0.6;
-}
-
 nav, footer {
     background-color: var(--tertiary-color);
     overflow: hidden;
@@ -127,6 +42,7 @@ nav, footer {
     display: flex;
     justify-content: left;
     align-items: center;
+    user-select: none;
 }
 
 nav img {
@@ -175,6 +91,10 @@ nav ul li a.active {
     color: white;
 }
 
+main {
+    padding-bottom: 200px !important;
+}
+
 footer {
     position: absolute;
     bottom: 0;
@@ -213,5 +133,40 @@ footer a {
 
 footer a:hover {
     color: var(--secondary-color);
+}
+
+
+a.button-link {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    gap: 0.5em;
+    text-decoration: none;
+    color: white;
+    background-color: var(--secondary-color);
+    padding: 0.7em 1.2em;
+    border-radius: 4px;
+    margin: 1em 1em;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.8;
+}
+
+a.button-link.button-secondary {
+    background-color: gray;
+}
+
+a.button-link > img {
+    filter: brightness(0) invert(1);
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+a.button-link:hover {
+    opacity: 1;
+    box-shadow: 0 0 10px white;
 }
 
