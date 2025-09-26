@@ -34,7 +34,7 @@ body {
     filter: blur(10px);
 }
 
-nav, footer {
+body > nav, footer {
     background-color: var(--tertiary-color);
     overflow: hidden;
     width: 100%;
@@ -45,13 +45,13 @@ nav, footer {
     user-select: none;
 }
 
-nav img {
+body > nav img {
     height: 50px;
     margin: 0.5em 1em;
     user-select: none;
 }
 
-nav h1 {
+body > nav h1 {
     color: white;
     padding: 1em 0.5em 1em 0;
     display: inline-block;
@@ -59,7 +59,7 @@ nav h1 {
     margin-right: auto;
 }
 
-nav ul {
+body > nav ul {
     display: flex;
     justify-content: right;
     align-items: center;
@@ -68,11 +68,11 @@ nav ul {
     padding: 0;
 }
 
-nav ul li {
+body > nav ul li {
     margin: 0 1em;
 }
 
-nav ul li a {
+body > nav ul li a {
     color: gray;
     text-decoration: none;
     font-weight: bold;
@@ -82,12 +82,12 @@ nav ul li a {
     height: 100%;
 }
 
-nav ul li a:hover {
+body > nav ul li a:hover {
     background-color: var(--secondary-color);
     color: white;
 }
 
-nav ul li a.active {
+body > nav ul li a.active {
     color: white;
 }
 
@@ -169,4 +169,3 @@ a.button-link:hover {
     opacity: 1;
     box-shadow: 0 0 10px white;
 }
-

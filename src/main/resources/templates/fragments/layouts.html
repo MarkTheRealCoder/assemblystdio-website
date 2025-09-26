@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/main.js" defer></script>
+
+    <th:block th:if="${title == 'Examples'}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+        <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.js"></script>
+    </th:block>
+
     <title th:text="${title}">Title</title>
 
     <!-- CSS di base sempre inclusi -->

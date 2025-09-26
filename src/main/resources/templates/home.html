@@ -4,7 +4,6 @@
 <head th:replace="fragments/layouts :: head(title=${title}, additionalCss='home')"/>
 <body>
     <div th:replace="fragments/layouts :: background"/>
-
     <nav th:replace="fragments/layouts :: navbar(target=${title})"/>
 
     <main>
@@ -47,7 +46,22 @@
         </div>
         <section class="full" id="summary">
             <h2>Application Summary</h2>
-            <p></p>
+            <div class="flex-row summary-card">
+                <div class="img-container"><img src="imgs/sample.png" alt="Code Editor"></div>
+                <p>Modern IDE design</p>
+            </div>
+            <div class="flex-row summary-card">
+                <p>Advanced Text Editor features</p>
+                <div class="img-container"><img src="imgs/sample.png" alt="Code Editor"></div>
+            </div>
+            <div class="flex-row summary-card">
+                <div class="img-container"><img src="imgs/sample.png" alt="Code Editor"></div>
+                <p>Modern IDE design</p>
+            </div>
+            <div class="flex-row summary-card">
+                <p>Advanced Text Editor features</p>
+                <div class="img-container"><img src="imgs/sample.png" alt="Code Editor"></div>
+            </div>
         </section>
     </main>
 

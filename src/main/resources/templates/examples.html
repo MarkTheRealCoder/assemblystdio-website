@@ -2,23 +2,167 @@
 <html xmlns:th="http://www.thymeleaf.org" th:with="title='Examples'">
 
 <head th:replace="fragments/layouts :: head(title=${title}, additionalCss='examples')"/>
+
 <body>
     <div th:replace="fragments/layouts :: background"/>
 
     <nav th:replace="fragments/layouts :: navbar(target=${title})"/>
 
     <main>
-        <section>
+        <nav id="example-switcher">
+            <ul>
+                <li id="switch-ijvm"><button onclick="setMainContent('ijvm')">IJVM</button></li>
+                <li id="switch-a8088"><button onclick="setMainContent('a8088')">8088</button></li>
+                <li id="switch-style"><button onclick="setMainContent('style')">Style</button></li>
+            </ul>
+        </nav>
+        <div class="switch-container">
+            <section id="ijvm">
+                <h2>IJVM Examples</h2>
+                <pre class="line-numbers"><code class="language-ijvm">
+; Example IJVM code
+.constant
+    value1 10
+.end-constant
 
-        </section>
-        <section>
+.main
+    BIPUSH 0x0A
+    ILOAD x
+    IADD
+    GOTO end
+end:
+    HALT
+.end-main
+                </code></pre>
 
-        </section>
-        <section>
+            </section>
+            <section id="a8088">
+                <h2>8088 Examples</h2>
+                <pre class="line-numbers"><code class="language-asm8088">
+; Example 8088 code
+.SECT .data
+msg: .ASCII "Hello, world!"
 
-        </section>
+.SECT .text
+MOV AX, 0x0A
+MOV BX, msg
+CALL print
+HLT
+                </code></pre>
+
+            </section>
+            <section id="style">
+                <h2>Style Examples</h2>
+                <pre class="line-numbers"><code class="language-javascript">
+{
+    'id': 'example-style',
+    'name': 'Example Style',
+    'description': 'An example style configuration.',
+    'ijvm': {
+        'keyword': '#ff79c6',
+        'number': '#bd93f9',
+        'comment': '#6272a4',
+        'label': '#50fa7b',
+        'punctuation': '#f8f8f2'
+    },
+    'a8088': {
+        'keyword': '#ffb86c',
+        'number': '#8be9fd',
+        'comment': '#6272a4',
+        'register': '#50fa7b',
+        'string': '#f1fa8c',
+        'label': '#ff79c6',
+        'punctuation': '#f8f8f2'
+    }
+}
+                </code></pre>
+            </section>
+        </div>
     </main>
 
     <footer th:replace="fragments/layouts :: footer"/>
+    <script>
+        Prism.languages.ijvm = {
+            // Comments (// ... or ; ...)
+            'comment': [
+                /\/\/.*/,    // C-style comments
+                /;.*/        // Semicolon comments
+            ],
+
+            // Block keywords (.main, .method, etc.)
+            'block': {
+                pattern: /\.(?:constant|end-constant|main|end-main|method|end-method|var|end-var)\b/,
+                alias: 'keyword'
+            },
+
+            // Instructions (case-insensitive)
+            'instruction': {
+                pattern: /\b(?:HALT|NOP|IADD|IAND|IOR|ISUB|POP|SWAP|DUP|ERR|IN|OUT|IRETURN|BIPUSH|IINC|ILOAD|ISTORE|INVOKEVIRTUAL|LDC_W|IFLT|IFEQ|IF_ICMPEQ|GOTO)\b/i,
+                alias: 'keyword'
+            },
+
+            // Numbers: hex (0x..), octal (0o..), decimal (123, -5, etc.)
+            'number': {
+                pattern: /\b(?:0[xX][0-9a-fA-F]+|0[oO][0-7]+|-?\d+)\b/,
+                alias: 'number'
+            },
+
+            // Identifiers (labels, variable names, etc.)
+            'label': {
+                pattern: /\b[a-zA-Z_][a-zA-Z0-9_-]*\b/,
+                alias: 'symbol'
+            },
+
+            // Symbols
+            'punctuation': /[(),:]/,
+        };
+        Prism.languages.asm8088 = {
+            // Comments (// ... or ; ...)
+            'comment': [
+                    /\/\/.*/,
+                    /;.*/
+            ],
+
+            // Directives (.SECT, .BYTE, .DATA, etc.)
+            'directive': {
+                pattern: /\.(?:SECT|sect|BYTE|byte|ASCII|ascii|SPACE|space|DATA|data|TEXT|text|BSS|bss)\b/,
+                alias: 'keyword'
+            },
+
+            // Instructions (case-insensitive, grouped by type)
+            'instruction': {
+                pattern: /\b(?:MOV|PUSH|POP|ADD|ADC|SUB|SBB|MUL|DIV|INC|DEC|CMP|AND|OR|XOR|NOT|JMP|JE|JZ|JNE|JNZ|JL|JNGE|JLE|JNG|JG|JNLE|JGE|JNL|JB|JNAE|JBE|JNA|JA|JNBE|JAE|JNB|JS|JNS|JO|JNO|JP|JPE|JNP|JPO|JC|JNC|JCXZ|LOOP|CALL|RET|MOVB|SUBB|DIVB|CMPB|ADDB|XORB|MULB|SYS|HLT|NOP)\b/i,
+                alias: 'keyword'
+            },
+
+            // Registers (16-bit, 8-bit, segment)
+            'register': {
+                pattern: /\b(?:AX|BX|CX|DX|SI|DI|BP|SP|AL|AH|BL|BH|CL|CH|DL|DH|CS|DS|ES|SS)\b/i,
+                alias: 'variable'
+            },
+
+            // Numbers: hex (0x...), decimal, signed
+            'number': {
+                pattern: /\b(?:0[xX][0-9a-fA-F]+|-?\d+)\b/,
+                alias: 'number'
+            },
+
+            // Strings (for .ASCII)
+            'string': {
+                pattern: /"(?:[^"\r\n])*"/,
+                greedy: true
+            },
+
+            // Labels & identifiers
+            'label': {
+                pattern: /\b[a-zA-Z_][a-zA-Z0-9_]*\b/,
+                alias: 'symbol'
+            },
+
+            // Punctuation (separators and operators)
+            'punctuation': /[(),:\[\]\+\-]/
+        };
+
+    </script>
 </body>
 </html>

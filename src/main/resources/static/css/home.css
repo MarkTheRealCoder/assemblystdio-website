@@ -63,7 +63,7 @@ main section h2 {
     font-size: 2em;
 }
 
-main section p {
+main section > p {
     color: rgba(248, 244, 244, 0.72);
     font-size: 1.1em;
     line-height: 1.6;
@@ -85,7 +85,7 @@ main section p a {
 }
 
 main section p a:hover {
-    color: white;
+    color: var(--secondary-color);
 }
 
 div.flex-row {
@@ -94,4 +94,95 @@ div.flex-row {
     align-items: stretch;
     flex-wrap: wrap;
     margin: 2em 0;
+}
+
+div.flex-row.summary-card {
+    gap: 2em;
+    margin: 3em 0;
+}
+
+div.flex-row.summary-card > p {
+    border: none;
+    backdrop-filter: blur(2px);
+    font-size: 1.2em;
+    line-height: 1.7;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
+    width: 55%;
+    padding: 2em 2.5em;
+}
+
+div.flex-row.summary-card > div.img-container {
+    padding: 1em;
+    border: 1px solid rgba(3, 86, 182, 1);
+    box-shadow: 0 4px 12px rgba(3, 86, 182, 0.15);
+}
+
+div.flex-row.summary-card > div.img-container img {
+    max-width: 500px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+}
+
+div.flex-row.summary-card > p {
+    background: rgba(36, 37, 40, 0.41);
+    border-right: 1px solid rgba(3, 86, 182, 1);
+}
+
+div.flex-row.summary-card > div.img-container {
+    background: linear-gradient(145deg,
+    rgb(3, 86, 182) 0%,
+    rgba(3, 86, 182, 0.8) 50%,
+    rgba(255, 215, 3, 0.4) 100%);
+}
+
+div.flex-row.summary-card > div.img-container + p {
+    background: rgba(36, 37, 40, 0.41);
+    border-right: none;
+    border-left: 1px solid rgba(3, 86, 182, 1);
+    justify-content: left;
+}
+
+div.flex-row.summary-card > p + div.img-container {
+    background: linear-gradient(310deg,
+    rgb(3, 86, 182) 0%,
+    rgba(3, 86, 182, 0.8) 50%,
+    rgba(255, 215, 3, 0.4) 100%);
+}
+
+div.flex-row.summary-card {
+    padding-bottom: 2em;
+    border-bottom: 2px solid rgb(3, 86, 182);
+}
+
+@media (max-width: 768px) {
+    div.flex-row.summary-card {
+        flex-direction: column;
+    }
+
+    div.flex-row.summary-card > p {
+        width: 100%;
+        border: none;
+        border-top: 1px solid rgba(3, 86, 182, 1);
+    }
+
+    div.flex-row.summary-card > div.img-container + p {
+        border-left: none;
+        border-top: 1px solid rgba(3, 86, 182, 1);
+    }
+}
+
+div.flex-row.summary-card > div.img-container img {
+    transition: transform 0.3s ease;
+}
+
+div.flex-row.summary-card > div.img-container:hover img {
+    transform: scale(1.3);
 }
